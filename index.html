@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Team Learning Harness</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="avatar">L</div>
+        <div>
+          <p class="brand-title">Team Learning Library</p>
+          <p class="brand-subtitle">チーム学習コンテンツ置き場</p>
+        </div>
+      </div>
+      <div class="searchbar" role="search">
+        <label class="visually-hidden" for="contentSearch">コンテンツ検索</label>
+        <input id="contentSearch" type="search" placeholder="タイトル・本文を検索" autocomplete="off" />
+      </div>
+    </header>
+
+    <section class="filter-strip" aria-label="カテゴリ">
+      <div id="categoryFilters" class="category-filters"></div>
+    </section>
+
+    <main class="layout">
+      <aside class="sidebar" aria-label="Course navigation">
+        <div class="sidebar-heading">
+          <p>コンテンツ一覧</p>
+          <strong id="courseTitle">読み込み中</strong>
+        </div>
+        <div id="lessonNav" class="lesson-nav"></div>
+      </aside>
+
+      <article class="content">
+        <div class="content-meta" id="lessonMeta"></div>
+        <div id="lessonContent" class="prose">
+          <h1>読み込み中</h1>
+        </div>
+      </article>
+    </main>
+
+    <script src="./content-bundle.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
