@@ -1,0 +1,3 @@
+display_name: 学習コンテンツハーネス
+short_description: レッスンMarkdown、コース定義、直接HTML表示用バンドルを更新します。
+default_prompt: 学習サイトのコンテンツを更新し、検証して、index.htmlを直接開けるようにバンドルを再生成してください。
