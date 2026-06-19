@@ -319,6 +319,13 @@ body.is-resizing-sidebar {
   border-bottom: 1px solid var(--line);
 }
 
+.prose h3 {
+  font-size: 23px;
+  line-height: 1.35;
+  margin: 38px 0 12px;
+  color: var(--text);
+}
+
 .prose p,
 .prose li {
   font-size: 19px;

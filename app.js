@@ -303,6 +303,9 @@ function markdownToHtml(markdown) {
     } else if (line.startsWith("## ")) {
       closeList();
       html += `<h2>${inlineMarkdown(line.slice(3))}</h2>`;
+    } else if (line.startsWith("### ")) {
+      closeList();
+      html += `<h3>${inlineMarkdown(line.slice(4))}</h3>`;
     } else if (/^!\[[^\]]*]\([^)]+\)$/.test(line)) {
       closeList();
       const image = parseMarkdownImage(line);

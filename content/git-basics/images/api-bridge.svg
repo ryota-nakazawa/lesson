@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">APIはアプリと外部機能をつなぐ仲介役</title>
+  <desc id="desc">自分のアプリがAPIを通じて天気、生成AI、決済などの外部機能を呼び出す図</desc>
+  <rect width="1200" height="620" fill="#f7f9fc"/>
+  <rect x="70" y="140" width="270" height="260" rx="28" fill="#ffffff" stroke="#1f6feb" stroke-width="5"/>
+  <text x="205" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#183153">自分のアプリ</text>
+  <text x="205" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#516070">画面・業務ツール・</text>
+  <text x="205" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#516070">ワークフロー</text>
+  <rect x="470" y="180" width="260" height="180" rx="90" fill="#103b5f"/>
+  <text x="600" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">API</text>
+  <text x="600" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#d8e7f5">決まった呼び出し方</text>
+  <path d="M350 270 H450" stroke="#1f6feb" stroke-width="8" stroke-linecap="round"/>
+  <path d="M440 248 L470 270 L440 292" fill="none" stroke="#1f6feb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M750 270 H850" stroke="#1f6feb" stroke-width="8" stroke-linecap="round"/>
+  <path d="M840 248 L870 270 L840 292" fill="none" stroke="#1f6feb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="Arial, sans-serif">
+    <rect x="890" y="90" width="240" height="90" rx="20" fill="#ffffff" stroke="#2da44e" stroke-width="4"/>
+    <text x="1010" y="145" text-anchor="middle" font-size="30" font-weight="700" fill="#1f3d2a">天気情報</text>
+    <rect x="890" y="225" width="240" height="90" rx="20" fill="#ffffff" stroke="#7c3aed" stroke-width="4"/>
+    <text x="1010" y="280" text-anchor="middle" font-size="30" font-weight="700" fill="#3d245f">生成AI</text>
+    <rect x="890" y="360" width="240" height="90" rx="20" fill="#ffffff" stroke="#d97706" stroke-width="4"/>
+    <text x="1010" y="415" text-anchor="middle" font-size="30" font-weight="700" fill="#5c3500">決済</text>
+  </g>
+  <text x="600" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#183153">APIを使うと、外部の便利な機能を自分のアプリから呼び出せる</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">身近なAPIの利用例</title>
+  <desc id="desc">Googleログイン、チャットボット、EC決済、ワークフロー連携の4つの例を並べた図</desc>
+  <rect width="1200" height="720" fill="#f5f7fb"/>
+  <text x="600" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#172033">身近なところでAPIは使われている</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="100" y="140" width="460" height="190" rx="22" fill="#ffffff" stroke="#1f6feb" stroke-width="4"/>
+    <text x="150" y="205" font-size="30" font-weight="700" fill="#183153">Googleログイン</text>
+    <text x="150" y="255" font-size="22" fill="#516070">
+      <tspan x="150" dy="0">アカウント確認や認証を</tspan>
+      <tspan x="150" dy="34">外部サービスに任せる</tspan>
+    </text>
+    <rect x="640" y="140" width="460" height="190" rx="22" fill="#ffffff" stroke="#7c3aed" stroke-width="4"/>
+    <text x="690" y="205" font-size="30" font-weight="700" fill="#3d245f">チャットボット</text>
+    <text x="690" y="255" font-size="22" fill="#516070">
+      <tspan x="690" dy="0">LLMのAPIを呼び出して</tspan>
+      <tspan x="690" dy="34">会話機能を作る</tspan>
+    </text>
+    <rect x="100" y="395" width="460" height="190" rx="22" fill="#ffffff" stroke="#d97706" stroke-width="4"/>
+    <text x="150" y="460" font-size="30" font-weight="700" fill="#5c3500">EC決済</text>
+    <text x="150" y="510" font-size="22" fill="#516070">
+      <tspan x="150" dy="0">決済ベンダーのAPIで</tspan>
+      <tspan x="150" dy="34">支払い手段を増やす</tspan>
+    </text>
+    <rect x="640" y="395" width="460" height="190" rx="22" fill="#ffffff" stroke="#2da44e" stroke-width="4"/>
+    <text x="690" y="460" font-size="30" font-weight="700" fill="#1f3d2a">Dify・n8n連携</text>
+    <text x="690" y="510" font-size="22" fill="#516070">
+      <tspan x="690" dy="0">ワークフローからAPIを呼び出し</tspan>
+      <tspan x="690" dy="34">業務を自動化する</tspan>
+    </text>
+  </g>
+</svg>
