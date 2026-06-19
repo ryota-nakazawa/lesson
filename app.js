@@ -12,6 +12,13 @@ const categoryFilters = document.querySelector("#categoryFilters");
 const lessonNav = document.querySelector("#lessonNav");
 const lessonMeta = document.querySelector("#lessonMeta");
 const lessonContent = document.querySelector("#lessonContent");
+const sidebarResizer = document.querySelector("#sidebarResizer");
+
+const sidebarWidth = {
+  min: 240,
+  max: 520,
+  storageKey: "learningHarnessSidebarWidth",
+};
 
 async function init() {
   try {
@@ -22,6 +29,7 @@ async function init() {
     state.course = window.LEARNING_CONTENT.course;
     state.markdownByFile = window.LEARNING_CONTENT.markdownByFile;
     courseTitle.textContent = state.course.title;
+    initSidebarResize();
     renderCategoryFilters();
     renderNavigation();
     const firstLesson = state.course.stages[0].lessons[0];
@@ -30,6 +38,53 @@ async function init() {
     lessonContent.innerHTML = `<p class="error">コンテンツを読み込めませんでした。content-bundle.js を生成してください。</p>`;
     console.error(error);
   }
+}
+
+function initSidebarResize() {
+  const savedValue = localStorage.getItem(sidebarWidth.storageKey);
+  const savedWidth = Number(savedValue);
+  if (savedValue !== null && Number.isFinite(savedWidth)) {
+    setSidebarWidth(savedWidth);
+  }
+
+  if (!sidebarResizer) return;
+
+  sidebarResizer.addEventListener("pointerdown", (event) => {
+    if (window.matchMedia("(max-width: 820px)").matches) return;
+    event.preventDefault();
+    sidebarResizer.setPointerCapture(event.pointerId);
+    document.body.classList.add("is-resizing-sidebar");
+  });
+
+  sidebarResizer.addEventListener("pointermove", (event) => {
+    if (!document.body.classList.contains("is-resizing-sidebar")) return;
+    const layoutLeft = sidebarResizer.parentElement.getBoundingClientRect().left;
+    setSidebarWidth(event.clientX - layoutLeft);
+  });
+
+  sidebarResizer.addEventListener("pointerup", (event) => {
+    sidebarResizer.releasePointerCapture(event.pointerId);
+    document.body.classList.remove("is-resizing-sidebar");
+    localStorage.setItem(sidebarWidth.storageKey, getSidebarWidth());
+  });
+
+  sidebarResizer.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const delta = event.key === "ArrowLeft" ? -20 : 20;
+    setSidebarWidth(Number(getSidebarWidth()) + delta);
+    localStorage.setItem(sidebarWidth.storageKey, getSidebarWidth());
+  });
+}
+
+function setSidebarWidth(width) {
+  const clampedWidth = Math.min(sidebarWidth.max, Math.max(sidebarWidth.min, Math.round(width)));
+  document.documentElement.style.setProperty("--sidebar-width", `${clampedWidth}px`);
+}
+
+function getSidebarWidth() {
+  const value = getComputedStyle(document.documentElement).getPropertyValue("--sidebar-width");
+  return String(parseInt(value, 10) || 320);
 }
 
 contentSearch?.addEventListener("input", (event) => {
@@ -122,7 +177,9 @@ async function selectLesson(id) {
     lessonContent.innerHTML = `<p class="error">Markdownが見つかりません: ${escapeHtml(lesson.file)}</p>`;
     return;
   }
-  lessonContent.innerHTML = markdownToHtml(markdown);
+  lessonContent.innerHTML = markdownToHtml(markdown) + lessonFooterToHtml(lesson);
+  initQuizzes();
+  initLessonFooter();
 }
 
 function findLesson(id) {
@@ -153,12 +210,16 @@ function matchesSearch(lesson) {
 }
 
 function markdownToHtml(markdown) {
-  const lines = markdown.split("\n");
+  const allLines = markdown.split("\n");
+  const quizStartIndex = allLines.findIndex((line) => line.trim() === "## 理解度チェック");
+  const lines = quizStartIndex >= 0 ? allLines.slice(0, quizStartIndex) : allLines;
+  const quizLines = quizStartIndex >= 0 ? allLines.slice(quizStartIndex) : [];
   let html = "";
   let inList = false;
   let inCallout = false;
   let inCode = false;
   let codeLines = [];
+  let tableLines = [];
 
   const closeList = () => {
     if (inList) {
@@ -182,6 +243,13 @@ function markdownToHtml(markdown) {
     }
   };
 
+  const closeTable = () => {
+    if (tableLines.length > 0) {
+      html += markdownTableToHtml(tableLines);
+      tableLines = [];
+    }
+  };
+
   lines.forEach((rawLine) => {
     const line = rawLine.trim();
 
@@ -191,6 +259,7 @@ function markdownToHtml(markdown) {
       } else {
         closeList();
         closeCallout();
+        closeTable();
         inCode = true;
       }
       return;
@@ -203,8 +272,18 @@ function markdownToHtml(markdown) {
 
     if (!line) {
       closeList();
+      closeTable();
       return;
     }
+
+    if (isTableLine(line)) {
+      closeList();
+      closeCallout();
+      tableLines.push(line);
+      return;
+    }
+
+    closeTable();
 
     if (line.startsWith("> ")) {
       closeList();
@@ -243,7 +322,242 @@ function markdownToHtml(markdown) {
   closeList();
   closeCallout();
   closeCode();
+  closeTable();
+  if (quizLines.length > 0) {
+    html += quizToHtml(quizLines);
+  }
   return html;
+}
+
+function quizToHtml(lines) {
+  const quiz = parseQuiz(lines);
+  if (quiz.questions.length === 0) return "<h2>理解度チェック</h2>";
+
+  const passCount = Math.max(1, Math.ceil(quiz.questions.length * 0.7));
+  const questionsHtml = quiz.questions
+    .map((question, index) => {
+      const optionsHtml = question.options
+        .map((option) => {
+          return `
+            <button class="quiz-option" type="button" data-option="${escapeHtml(option.key)}">
+              <span class="quiz-radio" aria-hidden="true"></span>
+              <span>${inlineMarkdown(option.text)}</span>
+            </button>
+          `;
+        })
+        .join("");
+
+      return `
+        <section class="quiz-question" data-answer="${escapeHtml(question.answer)}">
+          <div class="quiz-question-head">
+            <span class="quiz-number">${index + 1}</span>
+            <h3>${inlineMarkdown(question.prompt)}</h3>
+            <span class="quiz-status" aria-live="polite"></span>
+          </div>
+          <div class="quiz-options">${optionsHtml}</div>
+          <div class="quiz-explanation">
+            <strong>解説</strong>
+            <p>${inlineMarkdown(question.explanation || "本文の内容をもう一度確認しましょう。")}</p>
+          </div>
+        </section>
+      `;
+    })
+    .join("");
+
+  return `
+    <section class="quiz-card" data-pass-count="${passCount}">
+      <div class="quiz-card-head">
+        <div>
+          <h2>理解度チェック（${quiz.questions.length}問）</h2>
+          <span class="quiz-headline"></span>
+        </div>
+        <p>${passCount}問以上で合格</p>
+      </div>
+      ${questionsHtml}
+      <div class="quiz-result" aria-live="polite">
+        <div>
+          <strong class="quiz-score">未回答</strong>
+          <p class="quiz-result-message">選択肢を選ぶと結果が表示されます。</p>
+        </div>
+        <button class="quiz-reset" type="button">もう一度</button>
+      </div>
+    </section>
+  `;
+}
+
+function parseQuiz(lines) {
+  const questions = [];
+  const answers = new Map();
+  let current = null;
+  let readingAnswers = false;
+
+  lines.forEach((rawLine) => {
+    const line = rawLine.trim();
+    const questionMatch = line.match(/^Q(\d+)\.\s*(.+)$/);
+    const optionMatch = line.match(/^-\s*([A-D])\.\s*(.+)$/);
+    const answerMatch = line.match(/^-\s*Q(\d+):\s*([A-D])$/);
+    const explanationMatch = line.match(/^解説:\s*(.+)$/);
+
+    if (line === "答え:") {
+      readingAnswers = true;
+      current = null;
+      return;
+    }
+
+    if (answerMatch) {
+      answers.set(Number(answerMatch[1]), answerMatch[2]);
+      return;
+    }
+
+    if (questionMatch && !readingAnswers) {
+      current = {
+        number: Number(questionMatch[1]),
+        prompt: questionMatch[2],
+        options: [],
+        answer: "",
+        explanation: "",
+      };
+      questions.push(current);
+      return;
+    }
+
+    if (optionMatch && current) {
+      current.options.push({ key: optionMatch[1], text: optionMatch[2] });
+      return;
+    }
+
+    if (explanationMatch && current) {
+      current.explanation = explanationMatch[1];
+    }
+  });
+
+  questions.forEach((question) => {
+    question.answer = answers.get(question.number) ?? "";
+  });
+
+  return { questions };
+}
+
+function initQuizzes() {
+  document.querySelectorAll(".quiz-card").forEach((quiz) => {
+    const updateResult = () => {
+      const questions = Array.from(quiz.querySelectorAll(".quiz-question"));
+      const answered = questions.filter((question) => question.classList.contains("is-answered"));
+      const correct = questions.filter((question) => question.classList.contains("is-correct"));
+      const score = quiz.querySelector(".quiz-score");
+      const message = quiz.querySelector(".quiz-result-message");
+      const passCount = Number(quiz.dataset.passCount);
+
+      if (answered.length === 0) {
+        score.textContent = "未回答";
+        message.textContent = "選択肢を選ぶと結果が表示されます。";
+        quiz.classList.remove("is-passed");
+        return;
+      }
+
+      score.textContent = `${correct.length} / ${questions.length} 正解`;
+      if (answered.length < questions.length) {
+        message.textContent = "未回答の問題があります。";
+        quiz.classList.remove("is-passed");
+      } else if (correct.length >= passCount) {
+        message.textContent = "合格です。よく確認できています。";
+        quiz.classList.add("is-passed");
+      } else {
+        message.textContent = "もう一度、本文を確認してみましょう。";
+        quiz.classList.remove("is-passed");
+      }
+    };
+
+    quiz.querySelectorAll(".quiz-option").forEach((option) => {
+      option.addEventListener("click", () => {
+        const question = option.closest(".quiz-question");
+        const answer = question.dataset.answer;
+        const selected = option.dataset.option;
+        const isCorrect = selected === answer;
+
+        question.classList.add("is-answered");
+        question.classList.toggle("is-correct", isCorrect);
+        question.classList.toggle("is-incorrect", !isCorrect);
+        question.querySelector(".quiz-status").textContent = isCorrect ? "✓ 正解" : "もう一度確認";
+
+        question.querySelectorAll(".quiz-option").forEach((candidate) => {
+          const isAnswer = candidate.dataset.option === answer;
+          candidate.classList.toggle("is-selected", candidate === option);
+          candidate.classList.toggle("is-answer", isAnswer);
+          candidate.classList.toggle("is-wrong", candidate === option && !isCorrect);
+        });
+
+        updateResult();
+      });
+    });
+
+    quiz.querySelector(".quiz-reset")?.addEventListener("click", () => {
+      quiz.querySelectorAll(".quiz-question").forEach((question) => {
+        question.classList.remove("is-answered", "is-correct", "is-incorrect");
+        question.querySelector(".quiz-status").textContent = "";
+        question.querySelectorAll(".quiz-option").forEach((option) => {
+          option.classList.remove("is-selected", "is-answer", "is-wrong");
+        });
+      });
+      updateResult();
+    });
+  });
+}
+
+function lessonFooterToHtml(lesson) {
+  const nextLesson = getNextLesson(lesson.id);
+  if (!nextLesson) return "";
+  return `
+    <div class="lesson-footer">
+      <button class="next-lesson-button" type="button" data-next-lesson-id="${escapeHtml(nextLesson.id)}">
+        次のレッスン →
+      </button>
+    </div>
+  `;
+}
+
+function initLessonFooter() {
+  document.querySelector(".next-lesson-button")?.addEventListener("click", (event) => {
+    selectLesson(event.currentTarget.dataset.nextLessonId);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function getNextLesson(id) {
+  const lessons = state.course.stages.flatMap((stage) => stage.lessons);
+  const index = lessons.findIndex((lesson) => lesson.id === id);
+  return index >= 0 ? lessons[index + 1] : null;
+}
+
+function isTableLine(line) {
+  return line.startsWith("|") && line.endsWith("|") && line.includes("|");
+}
+
+function markdownTableToHtml(lines) {
+  if (lines.length < 2 || !isTableSeparator(lines[1])) {
+    return lines.map((line) => `<p>${inlineMarkdown(line)}</p>`).join("");
+  }
+
+  const headers = splitTableRow(lines[0]);
+  const rows = lines.slice(2).filter((line) => isTableLine(line)).map(splitTableRow);
+
+  const headerHtml = headers.map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("");
+  const rowsHtml = rows
+    .map((row) => `<tr>${row.map((cell) => `<td>${inlineMarkdown(cell)}</td>`).join("")}</tr>`)
+    .join("");
+
+  return `<div class="table-wrap"><table><thead><tr>${headerHtml}</tr></thead><tbody>${rowsHtml}</tbody></table></div>`;
+}
+
+function isTableSeparator(line) {
+  return splitTableRow(line).every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+
+function splitTableRow(line) {
+  return line
+    .slice(1, -1)
+    .split("|")
+    .map((cell) => cell.trim());
 }
 
 function parseMarkdownImage(line) {
