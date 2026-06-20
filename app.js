@@ -3,6 +3,7 @@ const state = {
   activeLesson: null,
   markdownByFile: {},
   activeCategory: "all",
+  expandedSections: new Set(),
   query: "",
 };
 
@@ -32,7 +33,8 @@ async function init() {
     initSidebarResize();
     renderCategoryFilters();
     renderNavigation();
-    const firstLesson = state.course.stages[0].lessons[0];
+    const firstLesson = getLessonEntries()[0]?.lesson;
+    if (!firstLesson) throw new Error("No lessons found in course.json");
     await selectLesson(firstLesson.id);
   } catch (error) {
     lessonContent.innerHTML = `<p class="error">コンテンツを読み込めませんでした。content-bundle.js を生成してください。</p>`;
@@ -124,8 +126,13 @@ function renderNavigation() {
     const stageId = stage.id ?? stage.title;
     if (state.activeCategory !== "all" && state.activeCategory !== stageId) return;
 
-    const visibleLessons = stage.lessons.filter((lesson) => matchesSearch(lesson));
-    if (visibleLessons.length === 0) return;
+    const sections = getStageSections(stage)
+      .map((section) => ({
+        ...section,
+        lessons: section.lessons.filter((lesson) => matchesSearch(lesson)),
+      }))
+      .filter((section) => section.lessons.length > 0);
+    if (sections.length === 0) return;
 
     const stageEl = document.createElement("section");
     stageEl.className = "stage";
@@ -135,21 +142,53 @@ function renderNavigation() {
     title.textContent = stage.title;
     stageEl.append(title);
 
-    visibleLessons.forEach((lesson) => {
-      visibleCount += 1;
-      const button = document.createElement("button");
-      button.className = "lesson-button";
-      button.type = "button";
-      button.dataset.lessonId = lesson.id;
-      button.innerHTML = `
-        <span class="lesson-number">${lesson.number}</span>
-        <span>
-          <span class="lesson-title">${escapeHtml(lesson.title)}</span>
-          <span class="lesson-duration">${escapeHtml(lesson.duration)}</span>
-        </span>
-      `;
-      button.addEventListener("click", () => selectLesson(lesson.id));
-      stageEl.append(button);
+    sections.forEach((section) => {
+      const sectionId = getSectionId(stage, section);
+      const isExpanded = Boolean(state.query) || state.expandedSections.has(sectionId);
+
+      if (section.title) {
+        const sectionToggle = document.createElement("button");
+        sectionToggle.className = "section-toggle";
+        sectionToggle.type = "button";
+        sectionToggle.dataset.sectionId = sectionId;
+        sectionToggle.setAttribute("aria-expanded", String(isExpanded));
+        sectionToggle.innerHTML = `
+          <span class="section-toggle-icon" aria-hidden="true"></span>
+          <span>${escapeHtml(section.title)}</span>
+          <span class="section-count">${section.lessons.length}</span>
+        `;
+        sectionToggle.addEventListener("click", () => {
+          if (state.expandedSections.has(sectionId)) {
+            state.expandedSections.delete(sectionId);
+          } else {
+            state.expandedSections.add(sectionId);
+          }
+          renderNavigation();
+        });
+        stageEl.append(sectionToggle);
+      }
+
+      const lessonList = document.createElement("div");
+      lessonList.className = "section-lessons";
+      lessonList.hidden = !isExpanded;
+
+      section.lessons.forEach((lesson, lessonIndex) => {
+        visibleCount += 1;
+        const button = document.createElement("button");
+        button.className = "lesson-button";
+        button.type = "button";
+        button.dataset.lessonId = lesson.id;
+        button.innerHTML = `
+          <span class="lesson-number">${lessonIndex + 1}</span>
+          <span>
+            <span class="lesson-title">${escapeHtml(lesson.title)}</span>
+            <span class="lesson-duration">${escapeHtml(lesson.duration)}</span>
+          </span>
+        `;
+        button.addEventListener("click", () => selectLesson(lesson.id));
+        lessonList.append(button);
+      });
+      stageEl.append(lessonList);
     });
 
     lessonNav.append(stageEl);
@@ -165,11 +204,12 @@ async function selectLesson(id) {
   if (!lesson) return;
 
   state.activeLesson = lesson;
+  renderNavigation();
   document.querySelectorAll(".lesson-button").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lessonId === id);
   });
 
-  lessonMeta.textContent = `${getStageTitle(lesson.id)} / ${lesson.duration} / ${lesson.author} / 更新日 ${lesson.updatedAt}`;
+  lessonMeta.textContent = `${getLessonPath(lesson.id)} / ${lesson.duration} / ${lesson.author} / 更新日 ${lesson.updatedAt}`;
   lessonContent.innerHTML = "<h1>読み込み中</h1>";
 
   const markdown = state.markdownByFile[lesson.file];
@@ -183,14 +223,13 @@ async function selectLesson(id) {
 }
 
 function findLesson(id) {
-  return state.course.stages.flatMap((stage) => stage.lessons).find((lesson) => lesson.id === id);
+  return getLessonEntries().find((entry) => entry.lesson.id === id)?.lesson;
 }
 
-function getStageTitle(lessonId) {
-  const stage = state.course.stages.find((candidate) => {
-    return candidate.lessons.some((lesson) => lesson.id === lessonId);
-  });
-  return stage?.title ?? "未分類";
+function getLessonPath(lessonId) {
+  const entry = getLessonEntries().find((candidate) => candidate.lesson.id === lessonId);
+  if (!entry) return "未分類";
+  return [entry.stage.title, entry.section.title].filter(Boolean).join(" / ");
 }
 
 function matchesSearch(lesson) {
@@ -201,7 +240,7 @@ function matchesSearch(lesson) {
     lesson.duration,
     lesson.author,
     lesson.updatedAt,
-    getStageTitle(lesson.id),
+    getLessonPath(lesson.id),
     markdown,
   ]
     .join(" ")
@@ -527,9 +566,26 @@ function initLessonFooter() {
 }
 
 function getNextLesson(id) {
-  const lessons = state.course.stages.flatMap((stage) => stage.lessons);
+  const lessons = getLessonEntries().map((entry) => entry.lesson);
   const index = lessons.findIndex((lesson) => lesson.id === id);
   return index >= 0 ? lessons[index + 1] : null;
+}
+
+function getStageSections(stage) {
+  if (Array.isArray(stage.sections)) return stage.sections;
+  return [{ id: `${stage.id ?? stage.title}-default`, title: "", lessons: stage.lessons ?? [] }];
+}
+
+function getSectionId(stage, section) {
+  return `${stage.id ?? stage.title}:${section.id ?? section.title}`;
+}
+
+function getLessonEntries() {
+  return (state.course?.stages ?? []).flatMap((stage) => {
+    return getStageSections(stage).flatMap((section) => {
+      return (section.lessons ?? []).map((lesson) => ({ stage, section, lesson }));
+    });
+  });
 }
 
 function isTableLine(line) {
