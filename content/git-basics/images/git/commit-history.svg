@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">コミットがあると変更の流れをたどれる</title>
+  <desc id="desc">4つのコミットが時系列に並び、確認、比較、戻ることができることを示す図</desc>
+  <rect width="960" height="520" rx="22" fill="#f7f9fc"/>
+
+  <text x="480" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">コミットがあると変更の流れをたどれる</text>
+  <text x="480" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#607086">作業の区切りを残しておくと、あとから確認・比較・復旧しやすくなります</text>
+
+  <line x1="145" y1="224" x2="815" y2="224" stroke="#b8c7da" stroke-width="6" stroke-linecap="round"/>
+
+  <g>
+    <circle cx="155" cy="224" r="24" fill="#ffffff" stroke="#7eaee9" stroke-width="4"/>
+    <rect x="62" y="270" width="186" height="104" rx="16" fill="#ffffff" stroke="#c9d5e5" stroke-width="2"/>
+    <text x="155" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1f2937">コミット1</text>
+    <text x="155" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#56657a">最初の状態</text>
+  </g>
+
+  <g>
+    <circle cx="372" cy="224" r="24" fill="#ffffff" stroke="#7eaee9" stroke-width="4"/>
+    <rect x="279" y="270" width="186" height="104" rx="16" fill="#ffffff" stroke="#c9d5e5" stroke-width="2"/>
+    <text x="372" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1f2937">コミット2</text>
+    <text x="372" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#56657a">ボタン追加</text>
+  </g>
+
+  <g>
+    <circle cx="588" cy="224" r="24" fill="#ffffff" stroke="#7eaee9" stroke-width="4"/>
+    <rect x="495" y="270" width="186" height="104" rx="16" fill="#ffffff" stroke="#c9d5e5" stroke-width="2"/>
+    <text x="588" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1f2937">コミット3</text>
+    <text x="588" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#56657a">AIで文章修正</text>
+  </g>
+
+  <g>
+    <circle cx="805" cy="224" r="24" fill="#ffffff" stroke="#7eaee9" stroke-width="4"/>
+    <rect x="712" y="270" width="186" height="104" rx="16" fill="#ffffff" stroke="#c9d5e5" stroke-width="2"/>
+    <text x="805" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1f2937">コミット4</text>
+    <text x="805" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#56657a">表示崩れ修正</text>
+  </g>
+
+  <g>
+    <rect x="149" y="124" width="138" height="52" rx="26" fill="#eef6ff" stroke="#8ab8ed" stroke-width="2"/>
+    <text x="218" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#24527a">確認</text>
+    <path d="M260 178 C280 194 305 204 332 211" fill="none" stroke="#7eaee9" stroke-width="3" stroke-linecap="round" marker-end="url(#blueArrow)"/>
+  </g>
+
+  <g>
+    <rect x="411" y="124" width="138" height="52" rx="26" fill="#f0f7ef" stroke="#9bc58d" stroke-width="2"/>
+    <text x="480" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#2f6332">比較</text>
+    <path d="M425 200 C465 176 500 176 540 200" fill="none" stroke="#7fac77" stroke-width="3" stroke-linecap="round" marker-start="url(#greenArrow)" marker-end="url(#greenArrow)"/>
+  </g>
+
+  <g>
+    <rect x="673" y="124" width="138" height="52" rx="26" fill="#fff7df" stroke="#e6c864" stroke-width="2"/>
+    <text x="742" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#876713">戻る</text>
+    <path d="M712 186 C680 190 640 194 604 205" fill="none" stroke="#d4a72c" stroke-width="3" stroke-linecap="round" marker-end="url(#yellowArrow)"/>
+  </g>
+
+  <rect x="150" y="418" width="660" height="48" rx="24" fill="#e9eef6"/>
+  <text x="480" y="449" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#344256">コミットは、確認・比較・復旧のための目印になります</text>
+
+  <defs>
+    <marker id="blueArrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#7eaee9"/>
+    </marker>
+    <marker id="greenArrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#7fac77"/>
+    </marker>
+    <marker id="yellowArrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#d4a72c"/>
+    </marker>
+  </defs>
+</svg>

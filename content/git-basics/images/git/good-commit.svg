@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">よいコミットの中身</title>
+  <desc id="desc">よいコミットには目的にまとまった変更、理由が分かるメッセージ、作者と日時が含まれることを示す図</desc>
+  <rect width="960" height="520" rx="22" fill="#f7f9fc"/>
+  <text x="480" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">よいコミットは「目的ごとの箱」</text>
+  <text x="480" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#607086">関係ある変更をまとめ、理由が分かる名前を付けて履歴に残します</text>
+
+  <rect x="116" y="142" width="728" height="254" rx="24" fill="#ffffff" stroke="#c9d5e5" stroke-width="3"/>
+  <text x="480" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">コミット: ログイン失敗時のエラーメッセージを修正</text>
+
+  <rect x="156" y="228" width="190" height="106" rx="16" fill="#eef6ff" stroke="#8ab8ed" stroke-width="2"/>
+  <text x="251" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#24527a">変更内容</text>
+  <text x="251" y="292" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#344256">どのファイルを</text>
+  <text x="251" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#344256">どう変えたか</text>
+
+  <rect x="385" y="228" width="190" height="106" rx="16" fill="#f0f7ef" stroke="#9bc58d" stroke-width="2"/>
+  <text x="480" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2f6332">目的</text>
+  <text x="480" y="292" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#344256">1つの理由に</text>
+  <text x="480" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#344256">まとまっているか</text>
+
+  <rect x="614" y="228" width="190" height="106" rx="16" fill="#fff7df" stroke="#e6c864" stroke-width="2"/>
+  <text x="709" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#876713">記録情報</text>
+  <text x="709" y="292" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#344256">誰が・いつ</text>
+  <text x="709" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#344256">記録したか</text>
+
+  <rect x="196" y="424" width="568" height="48" rx="24" fill="#e9eef6"/>
+  <text x="480" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#344256">コミットメッセージは、この箱のラベルになります</text>
+</svg>
