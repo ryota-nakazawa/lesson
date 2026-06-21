@@ -16,12 +16,17 @@
 
 ## コンテンツ一覧
 
-### IT周辺技術
+### FDE人材に向けた基礎知識
 
-- Gitの概要と用語
-  - Gitって何？
-- Gitの基礎コマンド
-  - 追加予定
+- Gitの基礎
+  - Gitの全体像
+  - コミットと変更履歴
+  - ブランチとマージ
+  - Pull Requestとレビュー
+  - 状態を確認する: status / diff
+  - 変更を記録する: add / commit
+  - リモートとやりとりする: pull / push
+  - 基本ワークフロー
 - IT基礎用語
   - APIって何？
   - Dockerって何？
@@ -54,10 +59,10 @@ node scripts/build-content-bundle.js
 Markdown は必ず `#` 見出しから始めます。画像を差し込みたい場合は、Markdown の標準記法を使えます。
 
 ```md
-![説明文](images/example.png)
+![説明文](images/topic/example.png)
 ```
 
-この例では、画像ファイルを `content/git-basics/images/example.png` に置きます。相対パス画像は検証時に存在チェックされます。
+この例では、画像ファイルを `content/git-basics/images/topic/example.png` に置きます。画像はトピック単位のディレクトリに分け、相対パス画像は検証時に存在チェックされます。
 
 ## 検索機能
 
@@ -73,4 +78,4 @@ Markdown は必ず `#` 見出しから始めます。画像を差し込みたい
 - 更新日
 - Markdown本文
 
-カテゴリボタンでは、`IT周辺技術` や `生成AI関連` のような大カテゴリ単位で表示を切り替えられます。カテゴリは `course.json` の `stages` から、ナビゲーション内の小見出しは `sections` から自動生成されます。
+カテゴリボタンでは、`FDE人材に向けた基礎知識` や `生成AI関連` のような大カテゴリ単位で表示を切り替えられます。カテゴリは `course.json` の `stages` から、ナビゲーション内の小見出しは `sections` から自動生成されます。

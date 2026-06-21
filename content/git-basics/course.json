@@ -4,27 +4,85 @@
   "stages": [
     {
       "id": "it-literacy",
-      "title": "IT周辺技術",
+      "title": "FDE人材に向けた基礎知識",
       "sections": [
         {
           "id": "git-concepts",
-          "title": "Gitの概要と用語",
+          "title": "Gitの基礎",
           "lessons": [
             {
-              "id": "why-git",
+              "id": "git-overview",
               "number": 1,
-              "title": "Gitって何？",
-              "duration": "準備中",
+              "title": "Gitの全体像",
+              "duration": "8分",
               "author": "Learning Team",
-              "updatedAt": "2026-06-19",
+              "updatedAt": "2026-06-20",
               "file": "01-why-git.md"
+            },
+            {
+              "id": "git-commit-history",
+              "number": 2,
+              "title": "コミットと変更履歴",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "07-commit-history.md"
+            },
+            {
+              "id": "git-branch-merge",
+              "number": 3,
+              "title": "ブランチとマージ",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "08-branch-merge.md"
+            },
+            {
+              "id": "git-pull-request-review",
+              "number": 4,
+              "title": "Pull Requestとレビュー",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "09-pull-request-review.md"
+            },
+            {
+              "id": "git-status-diff",
+              "number": 5,
+              "title": "状態を確認する: status / diff",
+              "duration": "6分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "10-status-diff.md"
+            },
+            {
+              "id": "git-add-commit",
+              "number": 6,
+              "title": "変更を記録する: add / commit",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "03-add-commit.md"
+            },
+            {
+              "id": "git-pull-push",
+              "number": 7,
+              "title": "リモートとやりとりする: pull / push",
+              "duration": "6分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "11-pull-push.md"
+            },
+            {
+              "id": "git-basic-workflow",
+              "number": 8,
+              "title": "基本ワークフロー",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-20",
+              "file": "12-basic-workflow.md"
             }
           ]
-        },
-        {
-          "id": "git-basic-commands",
-          "title": "Gitの基礎コマンド",
-          "lessons": []
         },
         {
           "id": "it-basic-terms",
@@ -32,7 +90,7 @@
           "lessons": [
             {
               "id": "what-is-api",
-              "number": 2,
+              "number": 9,
               "title": "APIって何？",
               "duration": "8分",
               "author": "Learning Team",
@@ -41,7 +99,7 @@
             },
             {
               "id": "what-is-docker",
-              "number": 3,
+              "number": 10,
               "title": "Dockerって何？",
               "duration": "準備中",
               "author": "Learning Team",
@@ -50,7 +108,7 @@
             },
             {
               "id": "what-is-cli",
-              "number": 4,
+              "number": 11,
               "title": "CLI/コマンドって何？",
               "duration": "準備中",
               "author": "Learning Team",
@@ -71,7 +129,7 @@
           "lessons": [
             {
               "id": "what-are-agent-skills",
-              "number": 5,
+              "number": 12,
               "title": "Agent skillsって何？",
               "duration": "準備中",
               "author": "Learning Team",
@@ -80,7 +138,7 @@
             },
             {
               "id": "what-is-harness-design",
-              "number": 6,
+              "number": 13,
               "title": "ハーネス設計って何？",
               "duration": "8分",
               "author": "Learning Team",
