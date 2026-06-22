@@ -152,7 +152,7 @@
               "id": "what-is-docker",
               "number": 15,
               "title": "Dockerって何？",
-              "duration": "準備中",
+              "duration": "6分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "03-what-is-docker.md"
@@ -161,7 +161,7 @@
               "id": "local-production-environment",
               "number": 16,
               "title": "ローカル環境と本番環境",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "17-local-production-environment.md"
@@ -170,7 +170,7 @@
               "id": "environment-variables",
               "number": 17,
               "title": "環境変数って何？",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "18-environment-variables.md"
@@ -179,7 +179,7 @@
               "id": "package-management",
               "number": 18,
               "title": "パッケージ管理って何？",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "19-package-management.md"
@@ -194,7 +194,7 @@
               "id": "domain-dns",
               "number": 19,
               "title": "ドメイン / DNS",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "20-domain-dns.md"
@@ -203,7 +203,7 @@
               "id": "http-https",
               "number": 20,
               "title": "HTTP / HTTPS",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "21-http-https.md"
@@ -212,7 +212,7 @@
               "id": "database-storage",
               "number": 21,
               "title": "DB / ストレージ",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "22-database-storage.md"
@@ -221,7 +221,7 @@
               "id": "cloud-infra",
               "number": 22,
               "title": "クラウド / インフラ",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "23-cloud-infra.md"
@@ -242,7 +242,7 @@
               "id": "what-are-agent-skills",
               "number": 23,
               "title": "Agent skillsって何？",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "05-what-are-agent-skills.md"
@@ -251,7 +251,7 @@
               "id": "what-is-mcp",
               "number": 24,
               "title": "MCPって何？",
-              "duration": "準備中",
+              "duration": "5分",
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "24-what-is-mcp.md"
