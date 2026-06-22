@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lesson Quiz Maker"
+  short_description: "日本語レッスンの理解度チェックを作成"
+  default_prompt: "Use $lesson-quiz-maker to add a short comprehension quiz to this lesson."
