@@ -45,7 +45,8 @@
   <g>
     <rect x="411" y="124" width="138" height="52" rx="26" fill="#f0f7ef" stroke="#9bc58d" stroke-width="2"/>
     <text x="480" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#2f6332">比較</text>
-    <path d="M425 200 C465 176 500 176 540 200" fill="none" stroke="#7fac77" stroke-width="3" stroke-linecap="round" marker-start="url(#greenArrow)" marker-end="url(#greenArrow)"/>
+    <path d="M413 196 C450 176 510 176 547 196" fill="none" stroke="#7fac77" stroke-width="3" stroke-linecap="round" marker-end="url(#greenArrow)"/>
+    <path d="M547 214 C510 236 450 236 413 214" fill="none" stroke="#7fac77" stroke-width="3" stroke-linecap="round" marker-end="url(#greenArrow)"/>
   </g>
 
   <g>

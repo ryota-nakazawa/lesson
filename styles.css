@@ -504,7 +504,9 @@ body.is-resizing-sidebar {
 }
 
 .callout p {
+  grid-column: 2;
   margin: 0 0 12px;
+  min-width: 0;
 }
 
 .callout p:last-child {
