@@ -94,26 +94,137 @@
               "title": "APIって何？",
               "duration": "8分",
               "author": "Learning Team",
-              "updatedAt": "2026-06-19",
+              "updatedAt": "2026-06-22",
               "file": "02-what-is-api.md"
             },
             {
-              "id": "what-is-docker",
+              "id": "what-is-cli",
               "number": 10,
+              "title": "CLI/コマンドって何？",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "04-what-is-cli.md"
+            },
+            {
+              "id": "what-is-server",
+              "number": 11,
+              "title": "サーバーって何？",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "13-what-is-server.md"
+            },
+            {
+              "id": "frontend-backend",
+              "number": 12,
+              "title": "フロントエンド / バックエンド",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "14-frontend-backend.md"
+            },
+            {
+              "id": "node-npm-npx",
+              "number": 13,
+              "title": "Node.js / npm / npxって何？",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "15-node-npm-npx.md"
+            },
+            {
+              "id": "what-is-deploy",
+              "number": 14,
+              "title": "デプロイって何？",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "16-what-is-deploy.md"
+            }
+          ]
+        },
+        {
+          "id": "dev-runtime-environment",
+          "title": "開発環境・実行環境",
+          "lessons": [
+            {
+              "id": "what-is-docker",
+              "number": 15,
               "title": "Dockerって何？",
               "duration": "準備中",
               "author": "Learning Team",
-              "updatedAt": "2026-06-19",
+              "updatedAt": "2026-06-22",
               "file": "03-what-is-docker.md"
             },
             {
-              "id": "what-is-cli",
-              "number": 11,
-              "title": "CLI/コマンドって何？",
+              "id": "local-production-environment",
+              "number": 16,
+              "title": "ローカル環境と本番環境",
               "duration": "準備中",
               "author": "Learning Team",
-              "updatedAt": "2026-06-19",
-              "file": "04-what-is-cli.md"
+              "updatedAt": "2026-06-22",
+              "file": "17-local-production-environment.md"
+            },
+            {
+              "id": "environment-variables",
+              "number": 17,
+              "title": "環境変数って何？",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "18-environment-variables.md"
+            },
+            {
+              "id": "package-management",
+              "number": 18,
+              "title": "パッケージ管理って何？",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "19-package-management.md"
+            }
+          ]
+        },
+        {
+          "id": "web-infra-basics",
+          "title": "Webとインフラの基礎",
+          "lessons": [
+            {
+              "id": "domain-dns",
+              "number": 19,
+              "title": "ドメイン / DNS",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "20-domain-dns.md"
+            },
+            {
+              "id": "http-https",
+              "number": 20,
+              "title": "HTTP / HTTPS",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "21-http-https.md"
+            },
+            {
+              "id": "database-storage",
+              "number": 21,
+              "title": "DB / ストレージ",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "22-database-storage.md"
+            },
+            {
+              "id": "cloud-infra",
+              "number": 22,
+              "title": "クラウド / インフラ",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "23-cloud-infra.md"
             }
           ]
         }
@@ -129,20 +240,29 @@
           "lessons": [
             {
               "id": "what-are-agent-skills",
-              "number": 12,
+              "number": 23,
               "title": "Agent skillsって何？",
               "duration": "準備中",
               "author": "Learning Team",
-              "updatedAt": "2026-06-19",
+              "updatedAt": "2026-06-22",
               "file": "05-what-are-agent-skills.md"
             },
             {
+              "id": "what-is-mcp",
+              "number": 24,
+              "title": "MCPって何？",
+              "duration": "準備中",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-22",
+              "file": "24-what-is-mcp.md"
+            },
+            {
               "id": "what-is-harness-design",
-              "number": 13,
+              "number": 25,
               "title": "ハーネス設計って何？",
               "duration": "8分",
               "author": "Learning Team",
-              "updatedAt": "2026-06-19",
+              "updatedAt": "2026-06-22",
               "file": "06-what-is-harness-design.md"
             }
           ]
