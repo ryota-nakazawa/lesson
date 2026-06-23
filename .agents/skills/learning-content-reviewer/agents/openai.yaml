@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learning Content Reviewer"
+  short_description: "日本語学習レッスンの品質・図解・理解度チェックを評価"
+  default_prompt: "$learning-content-reviewer を使って、このレッスンのわかりやすさ、図解、理解度チェック、検証準備をレビューしてください。"
