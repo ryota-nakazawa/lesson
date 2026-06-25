@@ -141,6 +141,15 @@
               "author": "Learning Team",
               "updatedAt": "2026-06-22",
               "file": "16-what-is-deploy.md"
+            },
+            {
+              "id": "open-source-license",
+              "number": 15,
+              "title": "オープンソースとライセンス",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "25-open-source-license.md"
             }
           ]
         },
@@ -150,7 +159,7 @@
           "lessons": [
             {
               "id": "what-is-docker",
-              "number": 15,
+              "number": 16,
               "title": "Dockerって何？",
               "duration": "6分",
               "author": "Learning Team",
@@ -159,7 +168,7 @@
             },
             {
               "id": "local-production-environment",
-              "number": 16,
+              "number": 17,
               "title": "ローカル環境と本番環境",
               "duration": "5分",
               "author": "Learning Team",
@@ -168,7 +177,7 @@
             },
             {
               "id": "environment-variables",
-              "number": 17,
+              "number": 18,
               "title": "環境変数って何？",
               "duration": "5分",
               "author": "Learning Team",
@@ -177,7 +186,7 @@
             },
             {
               "id": "package-management",
-              "number": 18,
+              "number": 19,
               "title": "パッケージ管理って何？",
               "duration": "5分",
               "author": "Learning Team",
@@ -192,7 +201,7 @@
           "lessons": [
             {
               "id": "domain-dns",
-              "number": 19,
+              "number": 20,
               "title": "ドメイン / DNS",
               "duration": "5分",
               "author": "Learning Team",
@@ -201,7 +210,7 @@
             },
             {
               "id": "ip-address-port",
-              "number": 20,
+              "number": 21,
               "title": "IPアドレス / ポート",
               "duration": "6分",
               "author": "Learning Team",
@@ -210,7 +219,7 @@
             },
             {
               "id": "http-https",
-              "number": 21,
+              "number": 22,
               "title": "HTTP / HTTPS",
               "duration": "5分",
               "author": "Learning Team",
@@ -219,7 +228,7 @@
             },
             {
               "id": "database-storage",
-              "number": 22,
+              "number": 23,
               "title": "DB / ストレージ",
               "duration": "5分",
               "author": "Learning Team",
@@ -228,7 +237,7 @@
             },
             {
               "id": "cloud-infra",
-              "number": 23,
+              "number": 24,
               "title": "クラウド / インフラ",
               "duration": "5分",
               "author": "Learning Team",
@@ -237,7 +246,7 @@
             },
             {
               "id": "aws-architecture",
-              "number": 24,
+              "number": 25,
               "title": "AWSで見るインフラ構成の例",
               "duration": "8分",
               "author": "Learning Team",
@@ -253,12 +262,81 @@
       "title": "生成AI関連",
       "sections": [
         {
+          "id": "generative-ai-basics",
+          "title": "生成AIの基礎",
+          "lessons": [
+            {
+              "id": "what-is-generative-ai",
+              "title": "生成AIとは何か",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "26-what-is-generative-ai.md",
+              "number": 26
+            },
+            {
+              "id": "what-is-machine-learning",
+              "title": "機械学習とは何か",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "27-what-is-machine-learning.md",
+              "number": 27
+            },
+            {
+              "id": "what-is-llm",
+              "title": "LLMとは何か",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "28-what-is-llm.md",
+              "number": 28
+            },
+            {
+              "id": "attention-transformer",
+              "title": "AttentionとTransformer",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "30-attention-transformer.md",
+              "number": 29
+            },
+            {
+              "id": "image-generation-ai",
+              "title": "画像生成AIの仕組み",
+              "duration": "8分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "31-image-generation-ai.md",
+              "number": 30
+            },
+            {
+              "id": "rag-basics",
+              "title": "RAGとは何か",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "32-rag-basics.md",
+              "number": 31
+            },
+            {
+              "id": "ai-usage-risks",
+              "title": "生成AIを使うときの注意点",
+              "duration": "7分",
+              "author": "Learning Team",
+              "updatedAt": "2026-06-23",
+              "file": "33-ai-usage-risks.md",
+              "number": 32
+            }
+          ]
+        },
+        {
           "id": "ai-agent-basics",
           "title": "AIエージェント基礎",
           "lessons": [
             {
               "id": "what-are-agent-skills",
-              "number": 23,
+              "number": 33,
               "title": "Agent skillsって何？",
               "duration": "5分",
               "author": "Learning Team",
@@ -267,7 +345,7 @@
             },
             {
               "id": "what-is-mcp",
-              "number": 24,
+              "number": 34,
               "title": "MCPって何？",
               "duration": "5分",
               "author": "Learning Team",
@@ -276,7 +354,7 @@
             },
             {
               "id": "what-is-harness-design",
-              "number": 25,
+              "number": 35,
               "title": "ハーネス設計って何？",
               "duration": "8分",
               "author": "Learning Team",
